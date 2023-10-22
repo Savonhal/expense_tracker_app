@@ -1,7 +1,7 @@
 # expense_tracker_app
 
 A simple expense tracker that keeps track of your budget and visualizes it with circular percentage indicators.
-Team 4's Group Project for Mobile App Development
+ Team 4's Group Project for Mobile App Development
 
 ## Getting Started
 
