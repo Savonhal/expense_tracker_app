@@ -1,0 +1,98 @@
+@startuml
+set namespaceSeparator ::
+
+class "expense_tracker_app::CategoryScreen.dart::CategoryScreen" {
+  {static} +String routeName
+  +List<Expense> currentList
+  +ExpenseList currentCategory
+  +State<CategoryScreen> createState()
+}
+
+"expense_tracker_app::CategoryScreen.dart::CategoryScreen" o-- "expense_tracker_app::main.dart::ExpenseList"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "expense_tracker_app::CategoryScreen.dart::CategoryScreen"
+
+class "expense_tracker_app::CategoryScreen.dart::_CategoryScreenState" {
+  -TextEditingController _ExpenseName
+  -TextEditingController _ExpenseAmount
+  -GlobalKey<FormState> _formKeyName
+  -GlobalKey<FormState> _formKeyAmount
+  +void setCategory()
+  +void setList()
+  +void addExpense()
+  +void editExpense()
+  +void archiveExpense()
+  +void deleteExpense()
+  +Widget build()
+  +dynamic displayDialog()
+}
+
+"expense_tracker_app::CategoryScreen.dart::_CategoryScreenState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"expense_tracker_app::CategoryScreen.dart::_CategoryScreenState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"flutter::src::widgets::framework.dart::State" <|-- "expense_tracker_app::CategoryScreen.dart::_CategoryScreenState"
+
+class "expense_tracker_app::expenseRow.dart::expenseRow" {
+  +ExpenseList category
+  +Expense expense
+  +void Function(Expense, String) editExpense
+  +void Function(Expense) archiveExpense
+  +void Function(Expense) deleteExpense
+  +Widget build()
+}
+
+"expense_tracker_app::expenseRow.dart::expenseRow" o-- "expense_tracker_app::main.dart::ExpenseList"
+"expense_tracker_app::expenseRow.dart::expenseRow" o-- "expense_tracker_app::main.dart::Expense"
+"expense_tracker_app::expenseRow.dart::expenseRow" o-- "null::void Function(Expense, String)"
+"expense_tracker_app::expenseRow.dart::expenseRow" o-- "null::void Function(Expense)"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "expense_tracker_app::expenseRow.dart::expenseRow"
+
+class "expense_tracker_app::main.dart::MyApp" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "expense_tracker_app::main.dart::MyApp"
+
+class "expense_tracker_app::main.dart::Expense" {
+  +String name
+  +double amount
+  +void setName()
+  +String getName()
+  +void setAmount()
+  +double getAmount()
+  +Map<String, dynamic> toJson()
+}
+
+class "expense_tracker_app::main.dart::ExpenseList" {
+  +String categoryName
+  +List<Expense> list
+  +Map<String, dynamic> toJson()
+}
+
+class "expense_tracker_app::main.dart::MyHomePage" {
+  +String title
+  +State<MyHomePage> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "expense_tracker_app::main.dart::MyHomePage"
+
+class "expense_tracker_app::main.dart::_MyHomePageState" {
+  -TextEditingController _userInputBudget
+  +double allocatedBudget
+  +double amountSpent
+  +double amountLeft
+  +double amountLeftPercent
+  +double categoryPercent
+  +void initState()
+  +void calculateAmountSpent()
+  +void calculateAmountLeft()
+  +double calculateAmountLeftPercentage()
+  +double calculateCategoryPercentage()
+  +void updateUIValues()
+  +void saveBudget()
+  +Widget build()
+}
+
+"expense_tracker_app::main.dart::_MyHomePageState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::State" <|-- "expense_tracker_app::main.dart::_MyHomePageState"
+
+
+@enduml
