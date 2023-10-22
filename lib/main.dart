@@ -218,44 +218,43 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Form(
                       key: _formKeyBudget,
                       child: TextFormField(
-                      controller: _userInputBudget,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                      decoration: InputDecoration(
-                        hintText: 'Enter New Total Budget',
-                        hintStyle: const TextStyle(fontSize: 15),
-                        filled: true,
-                        fillColor: Color.fromARGB(255, 85, 166, 113),
-                        //icon: const Icon(Icons.monetization_on_outlined),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(10),
+                        controller: _userInputBudget,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          ),
+                        decoration: InputDecoration(
+                          hintText: 'Enter New Total Budget',
+                          hintStyle: const TextStyle(fontSize: 15),
+                          filled: true,
+                          fillColor: Color.fromARGB(255, 85, 166, 113),
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
                         ),
-                      ),
-                      validator: (value) {
-                        if(value == null || value.isEmpty || double.tryParse(value).runtimeType != double){
-                          return 'Please enter a valid amount for your budget';
-                        }else{
-                          return null;
-                        }
-                      },
-                      onFieldSubmitted: (value) {
-                        if(_formKeyBudget.currentState!.validate()){
-                          allocatedBudget = double.parse(value);
-                          setState(() {
-                          calculateAmountSpent();
-                          calculateAmountLeft();
-                          calculateAmountLeftPercentage();
-                          saveBudget();
-                        });
-                        }                        
+                        validator: (value) {
+                          if(value == null || value.isEmpty || double.tryParse(value).runtimeType != double){
+                            return 'Please enter a valid amount for your budget';
+                          }else{
+                            return null;
+                          }
+                        },
+                        onFieldSubmitted: (value) {
+                          if(_formKeyBudget.currentState!.validate()){
+                            allocatedBudget = double.parse(value);
+                            setState(() {
+                              calculateAmountSpent();
+                              calculateAmountLeft();
+                              calculateAmountLeftPercentage();
+                              saveBudget();
+                            });
+                          }                        
                           _userInputBudget.clear();
-                      },
-                                       ),
+                        },
+                      ),
                     ),
                   ),
                   Text('Your Budget: \$$allocatedBudget',style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
