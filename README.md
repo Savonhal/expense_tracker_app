@@ -1,6 +1,6 @@
 # expense_tracker_app
 
-A new Flutter project.
+A simple expense tracker that keeps track of your budget and visualizes it with circular percentage indicators. 
 
 ## Getting Started
 
